@@ -2,9 +2,9 @@
 <html lang="en-GB">
 <head>
   <meta charset="UTF-8">
-  <title>HLA2106 Unit 22 – Reading Product Review</title>
+  <title>HLA2106 Unit 21 – Using there-structure</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     html, body { height: 100%; margin: 0; padding: 0; box-sizing: border-box;}
     body {
@@ -38,108 +38,149 @@
     .step { display: none; }
     .step.active { display: block; animation: fadeIn 1s;}
     @keyframes fadeIn {from{opacity:0}to{opacity:1}}
-    .title-page { text-align: center; padding: 64px 16px 52px 16px;}
+    
+    /* 置中的 Landing Page */
+    .title-page { text-align: center; padding: 64px 16px 52px 16px; display: flex; flex-direction: column; align-items: center;}
     .title-page h1 {
       font-size: 2.3em; font-weight: 700;
       background: linear-gradient(135deg, #667eea 0, #764ba2 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      text-shadow: 0 3px 18px #23a6d555; margin-bottom: 20px;}
-    .emoji-row { font-size: 2.5em; margin-bottom: 20px; animation: floatEmojis 1.6s infinite alternate;}
+      text-shadow: 0 3px 18px #23a6d555; margin-bottom: 10px;}
+    .emoji-row { font-size: 3em; margin-bottom: 20px; animation: floatEmojis 1.6s infinite alternate;}
     @keyframes floatEmojis {from{transform:translateY(0);}to{transform:translateY(-16px);}}
+    
     .nav-btn, .action-btn {
-      background: linear-gradient(90deg,#ff9a9e,#fad0c4);
-      border:none; border-radius:13px;
-      padding:0.7em 2em; color:#333; font-size: 1.08em; font-weight: 600; margin: 22px 8px 0;
-      box-shadow: 0 4px 16px #e4e4e4; cursor: pointer; transition: transform .18s, box-shadow .2s;
+      background: linear-gradient(90deg,#667eea,#764ba2);
+      border:none; border-radius:30px;
+      padding:1em 2.5em; color:#fff; font-size: 1.1em; font-weight: 600; margin: 22px 8px 0;
+      box-shadow: 0 4px 16px rgba(118, 75, 162, 0.4); cursor: pointer; transition: transform .18s, box-shadow .2s;
       outline:none;
     }
     .nav-btn:hover, .action-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 8px 20px #e4e4e4;
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(118, 75, 162, 0.6);
+      background: linear-gradient(90deg,#764ba2,#667eea);
+    }
+    .btn-secondary {
+      background: linear-gradient(90deg,#ff9a9e,#fad0c4);
+      color: #333;
+      box-shadow: 0 4px 16px #e4e4e4;
+    }
+    .btn-secondary:hover {
       background: linear-gradient(90deg,#fbc2eb,#a6c1ee);
+      color: #333;
     }
-    .section { margin-top: 54px; margin-bottom: 48px; }
-    .question {font-size:1.3em;color:#532c65;font-weight:600;margin-bottom:16px;}
-    .review-text {
-      background: #fff8f3;
-      border-radius: 13px;
-      padding: 26px 18px 22px 18px;
-      margin-bottom: 28px;
-      margin-top: 6px;
-      box-shadow: 0 2px 14px #e0bcd2;
-      font-size: 1.10em;
+
+    .section { margin-top: 30px; margin-bottom: 48px; }
+    .question-title {font-size:1.4em;color:#532c65;font-weight:700;margin-bottom:8px; border-bottom: 2px solid #eee; padding-bottom: 10px;}
+    .sentence-box {
+      background: #f8f9fa;
+      border-left: 5px solid #667eea;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+      margin-top: 16px;
+      font-size: 1.25em;
+      line-height: 1.6;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
-    .adjective {
-      border-radius: 7px;
-      padding: 0 0;
-      margin: 0 1px;
-      transition: background .3s, color .3s;
-      cursor: pointer;
-      background: none;
-      font-weight: inherit;
-      color: inherit;
-      display: inline;
-    }
-    .adjective.selected {
-      background: #b3edc1;
-      font-weight: bold;
-      color: #116427;
-      padding: 2px 6px;
-      margin: 0 2px;
+    .blank {
       display: inline-block;
+      min-width: 120px;
+      border-bottom: 2px solid #333;
+      text-align: center;
+      padding: 0 10px;
+      color: #764ba2;
+      font-weight: 600;
     }
-    .adjective.incorrect {
-      background: #ffd6d6;
-      color: #B91F37 !important;
-    }
-    .feedback {font-weight:bold;color:#249f66;margin:19px 0;}
-    .category-flex { display: flex; gap: 2em; flex-wrap: wrap; align-items: flex-start;}
-    .drag-choices { min-width: 200px; }
-    .drag-category-grid {
-      display: grid;
-      grid-template-columns: repeat(2,1fr);
-      gap: 1em;
-    }
-    .drag-category-grid > div {
+    
+    .mc-options {
       display: flex;
       flex-direction: column;
-      gap: 0.6em;
+      gap: 12px;
+      margin-bottom: 20px;
     }
-    .drag-label{font-size:1em;font-weight:600;margin-bottom:8px;margin-top:8px;}
-    .drag-choices h4 {margin-top:0;margin-bottom:14px;font-size:1.08em;}
-    .drag-item {
-      background: #ffe4e1;
-      padding: 8px 15px;
-      border-radius: 6px;
-      margin-bottom:9px;
-      font-size:1em;
-      color:#444;
-      cursor: grab;
-      transition:.2s;
-      box-shadow:0 2px 8px #f7c6c7;
-      display:block;
+    .mc-option {
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+      font-weight: 500;
+      color: #444;
     }
-    .drop-zone {
-      min-height: 44px; padding: 11px; border: 2px dashed #76c9d2; border-radius: 9px; background: #f7fafc; margin-bottom:7px;transition:.2s;
+    .mc-option:hover {
+      border-color: #667eea;
+      background: #f0f4ff;
     }
-    .drop-zone.over {background:#e0ffe6;}
-    .match-section{
-      display:flex;gap:1.2em;flex-wrap:wrap;
-      margin-bottom:25px;margin-top:25px;
+    .mc-option.selected {
+      border-color: #667eea;
+      background: #e6ebff;
+      color: #333;
     }
-    .match-pair{background:#f6f6ff;border-radius:13px;box-shadow:0 1px 8px #e4e4e4;padding:18px 18px 14px 18px;margin-bottom:6px;flex:1 1 320px;}
-    .match-label{font-weight:500;font-size:1.09em;margin-bottom:11px;}
-    .match-choices{margin:8px 0;}
-    .match-choice{
-      background:#ffe4e1;padding:7px 15px;border-radius:6px;margin-bottom:7px;
-      border:none;cursor:pointer;color:#444;font-size:1em;display:block;text-align:left;
-      transition:background .19s;
+    .mc-option.correct-reveal {
+      background: #d4edda;
+      border-color: #28a745;
+      color: #155724;
     }
-    .match-choice.selected{background:#b3edc1;color:#108301;font-weight:600;}
-    .match-choice.incorrect{background:#ffe6e6;color:#be220b;}
-    .explain-box {
-      margin-top: 16px; font-size: 1em; color: #16496d; background: #fffbe7; border-radius: 8px;
-      box-shadow: 0 2px 8px #ffe0b2; padding: 14px 17px; font-weight:600;
+    .mc-option.wrong-reveal {
+      background: #f8d7da;
+      border-color: #dc3545;
+      color: #721c24;
+    }
+
+    .feedback-box {
+      display: none;
+      margin-top: 20px; 
+      font-size: 1.05em; 
+      border-radius: 12px;
+      padding: 16px 20px; 
+      animation: fadeIn 0.5s;
+    }
+    .feedback-box.correct {
+      background: #d4edda;
+      border-left: 5px solid #28a745;
+      color: #155724;
+    }
+    .feedback-box.wrong {
+      background: #fff3cd;
+      border-left: 5px solid #ffc107;
+      color: #856404;
+    }
+    
+    .nav-controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+      border-top: 1px solid #eee;
+      padding-top: 20px;
+    }
+
+    /* Section 2 Step-by-step specific */
+    .step-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .step-box {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .step-title {
+      font-weight: 600;
+      color: #532c65;
+      margin-bottom: 12px;
+      font-size: 1.1em;
+    }
+    @media (max-width: 600px) {
+      .step-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -148,305 +189,292 @@
   <!-- Landing Page -->
   <div class="step active" id="step-0">
     <div class="title-page">
-      <div class="emoji-row">🌟📝🍀</div>
+      <div class="emoji-row">📚🏨✨</div>
       <h1>HLA2106: Workplace Writing II</h1>
-      <h2 style="color:#764ba2;font-weight:600;">Unit 22: Reading Product Review</h2>
-      <p style="font-size:1.13em;">Welcome! Ready to start learning with fun activities? <span style="font-size:1.4em;">🤩</span></p>
-      <button class="nav-btn" onclick="gotoStep(1)">Start &rarr;</button>
+      <h2 style="color:#764ba2;font-weight:600; margin-top: 0;">Unit 21: Using there-structure</h2>
+      <p style="font-size:1.13em; color: #555; max-width: 600px; line-height: 1.6;">
+        Master the subject-verb agreement and the tense usage with the there-structure in hospitality contexts.
+      </p>
+      <button class="nav-btn" onclick="gotoStep(1)">🚀 Start Exercise</button>
     </div>
   </div>
 
-  <!-- Question 1 -->
-  <div class="step" id="step-1">
-    <div class="section">
-      <div class="question">Question 1</div>
-      <div style="font-size:1.14em;color:#554;margin-bottom:10px;">
-        Read the review and <b>find the adjectives</b> by clicking any word!
-      </div>
-      <div class="review-text" id="reviewText"></div>
-      <div class="feedback" id="adjectiveResult"></div>
-      <div style="margin-top: 12px;">
-        <button class="action-btn" onclick="submitQ1()">Check Answers</button>
-      </div>
-      <div style="text-align:right;">
-        <button class="action-btn" onclick="gotoStep(2)">Next &rarr;</button>
-      </div>
+  <!-- Section 1 Questions Generation Placeholder -->
+  <div id="section1-container"></div>
+  
+  <!-- Section 2 Questions Generation Placeholder -->
+  <div id="section2-container"></div>
+  
+  <!-- Final Page -->
+  <div class="step" id="step-final">
+    <div class="title-page">
+      <div class="emoji-row">🎉🏆👏</div>
+      <h1>Great Job!</h1>
+      <p style="font-size:1.2em; color: #555;">You have completed all the exercises for Unit 21.</p>
+      <button class="nav-btn" onclick="location.reload()">🔄 Practice Again</button>
     </div>
   </div>
 
-  <!-- Question 2: Compact Grid -->
-  <div class="step" id="step-2">
-    <div class="section">
-      <div class="question">Question 2</div>
-      <div class="review-text">
-        This top-quality air purifier is perfect for spacious areas because its motor is powerful. It can purify rooms up to 50m² in just 10 minutes, providing you with fresh air in no time. Also, our air purifier is completely safe, as it never uses UV-C light. And with its user-friendly design, you can easily set a timer for 2, 4, or 8 hours. What's more, our air purifier is affordable. It's cheaper than many other options on the market, making it a perfect choice for everyone.
-      </div>
-      <div style="font-size:1.12em;color:#554;margin-bottom:10px;">
-        <b>Drag each adjective to the meaning that matches its use below:</b>
-      </div>
-      <div class="category-flex">
-        <div class="drag-choices">
-          <h4>Adjectives</h4>
-          <div class="drag-item" draggable="true" id="top-quality">top-quality</div>
-          <div class="drag-item" draggable="true" id="affordable">affordable</div>
-          <div class="drag-item" draggable="true" id="spacious">spacious</div>
-          <div class="drag-item" draggable="true" id="fresh">fresh</div>
-          <div class="drag-item" draggable="true" id="user-friendly">user-friendly</div>
-          <div class="drag-item" draggable="true" id="safe">safe</div>
-          <div class="drag-item" draggable="true" id="powerful">powerful</div>
-          <div class="drag-item" draggable="true" id="cheaper">cheaper</div>
-          <div class="drag-item" draggable="true" id="perfect">perfect</div>
-        </div>
-        <div class="drag-category-grid">
-          <div>
-            <div class="drag-label">very good</div>
-            <div id="drop-verygood" class="drop-zone"></div>
-            <div class="drag-label">large and with a lot of space</div>
-            <div id="drop-large" class="drop-zone"></div>
-            <div class="drag-label">not risky</div>
-            <div id="drop-safe" class="drop-zone"></div>
-          </div>
-          <div>
-            <div class="drag-label">not expensive</div>
-            <div id="drop-inexpensive" class="drop-zone"></div>
-            <div class="drag-label">new</div>
-            <div id="drop-new" class="drop-zone"></div>
-            <div class="drag-label">easy to use</div>
-            <div id="drop-easy" class="drop-zone"></div>
-            <div class="drag-label">strong</div>
-            <div id="drop-powerful" class="drop-zone"></div>
-          </div>
-        </div>
-      </div>
-      <div class="feedback" id="dragDropResult"></div>
-      <div style="text-align:right;">
-        <button class="action-btn" onclick="gotoStep(3)">Next &rarr;</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Question 3: Match comment with reason -->
-  <div class="step" id="step-3">
-    <div class="section">
-      <div class="question">Question 3</div>
-      <div class="review-text">
-        This top-quality air purifier is perfect for spacious areas because its motor is powerful. It can purify rooms up to 50m² in just 10 minutes, providing you with fresh air in no time. Also, our air purifier is completely safe, as it never uses UV-C light. And with its user-friendly design, you can easily set a timer for 2, 4, or 8 hours. What's more, our air purifier is affordable. It's cheaper than many other options on the market, making it a perfect choice for everyone.
-      </div>
-      <div class="match-section">
-        <div class="match-pair">
-          <div class="match-label">The purifier is perfect for spacious areas because ...</div>
-          <div class="match-choices">
-            <button class="match-choice" onclick="matchingQ3(this,3)">it is affordable.</button>
-            <button class="match-choice" onclick="matchingQ3(this,2)">it never uses UV-C light.</button>
-            <button class="match-choice" onclick="matchingQ3(this,1)">its motor is powerful.</button>
-          </div>
-        </div>
-        <div class="match-pair">
-          <div class="match-label">The purifier is completely safe because ...</div>
-          <div class="match-choices">
-            <button class="match-choice" onclick="matchingQ3(this,4)">it never uses UV-C light.</button>
-            <button class="match-choice" onclick="matchingQ3(this,6)">it is affordable.</button>
-            <button class="match-choice" onclick="matchingQ3(this,5)">it is new.</button>
-          </div>
-        </div>
-      </div>
-      <div class="feedback" id="matchResult"></div>
-      <div style="text-align:right;">
-        <button class="action-btn" onclick="gotoStep(4)">Next &rarr;</button>
-      </div>
-    </div>
-  </div>
-  <!-- Question 4: Drag reason word (removable, multi-word logic) -->
-  <div class="step" id="step-4">
-    <div class="section">
-      <div class="question">Question 4</div>
-      <div class="review-text">
-        This top-quality air purifier is perfect for spacious areas because its motor is powerful. It can purify rooms up to 50m² in just 10 minutes, providing you with fresh air in no time. Also, our air purifier is completely safe, as it never uses UV-C light. And with its user-friendly design, you can easily set a timer for 2, 4, or 8 hours. What's more, our air purifier is affordable. It's cheaper than many other options on the market, making it a perfect choice for everyone.
-      </div>
-      <div style="font-size:1.08em;font-weight:500;margin-bottom:7px;">
-        Which words introduce the reasons above? Drag and drop the correct words below:<br>
-        <span style="font-size:0.95em; color:#765;">Tip: Click a word in 'Drop here' to remove it!</span>
-      </div>
-      <div style="display:flex;gap:1em;flex-wrap:wrap;margin-top:12px;">
-        <div>
-          <div style="margin-bottom:7px;font-weight:500;">Choices:</div>
-          <div class="drag-choices" id="reasonChoices">
-            <div class="drag-item" draggable="true" id="because2">because</div>
-            <div class="drag-item" draggable="true" id="as2">as</div>
-            <div class="drag-item" draggable="true" id="never2">never</div>
-            <div class="drag-item" draggable="true" id="with2">with</div>
-          </div>
-        </div>
-        <div>
-          <div style="margin-bottom:8px;font-weight:500;">Drop here:</div>
-          <div id="dropReason" class="drop-zone" style="width:150px;min-height:40px;"></div>
-        </div>
-      </div>
-      <div style="margin-top: 12px;">
-        <button class="action-btn" onclick="submitQ4()">Submit Answers</button>
-      </div>
-      <div class="feedback" id="dragReasonResult"></div>
-      <div style="text-align:right;">
-        <button class="action-btn" onclick="gotoStep(0)">🏠 Home</button>
-      </div>
-    </div>
-  </div>
 </div>
+
 <script>
+// Data for Section 1: Subject-Verb Agreement
+const sec1Data = [
+  {
+    q: 1,
+    sentence: "<span class='blank' id='b1'></span> a business centre on the second floor.",
+    options: ["a) There is", "b) There are", "c) It is"],
+    ansIdx: 0,
+    explanation: "<b>'a business centre'</b> is singular, so we use <b>'There is'</b>."
+  },
+  {
+    q: 2,
+    sentence: "Next month, <span class='blank' id='b2'></span> three conference rooms available in our hotel.",
+    options: ["a) there were", "b) there will be", "c) there is"],
+    ansIdx: 1,
+    explanation: "The time marker <b>'Next month'</b> indicates future tense, so we use <b>'there will be'</b>."
+  },
+  {
+    q: 3,
+    sentence: "<span class='blank' id='b3'></span> a fitness centre and a swimming pool on the rooftop since 2022.",
+    options: ["a) There is", "b) There have been", "c) There has been"],
+    ansIdx: 1,
+    explanation: "The phrase <b>'since 2022'</b> requires the present perfect tense. <b>'a fitness centre and a swimming pool'</b> are plural, so we use <b>'There have been'</b>."
+  },
+  {
+    q: 4,
+    sentence: "Yesterday was our hotel’s 30th anniversary. <span class='blank' id='b4'></span> complimentary breakfast service for all guests.",
+    options: ["a) There were", "b) There is", "c) There was"],
+    ansIdx: 2,
+    explanation: "The context <b>'Yesterday'</b> requires past tense. <b>'complimentary breakfast service'</b> is singular uncountable, so we use <b>'There was'</b>."
+  },
+  {
+    q: 5,
+    sentence: "<span class='blank' id='b5'></span> several complaints about the noise this week.",
+    options: ["a) There have been", "b) There has been", "c) There are"],
+    ansIdx: 0,
+    explanation: "<b>'this week'</b> implies an ongoing period up to now, needing present perfect tense. <b>'several complaints'</b> is plural, so <b>'There have been'</b> is correct."
+  },
+  {
+    q: 6,
+    sentence: "Currently, <span class='blank' id='b6'></span> two restaurants and a café in the hotel lobby.",
+    options: ["a) there is", "b) there are", "c) there was"],
+    ansIdx: 1,
+    explanation: "<b>'Currently'</b> indicates present tense. <b>'two restaurants and a café'</b> form a plural subject, so we use <b>'there are'</b>."
+  }
+];
+
+// Data for Section 2: Tense and Agreement (Step-by-step)
+const sec2Data = [
+  {
+    q: 1,
+    sentence: "<span class='blank' id='b2_1'></span> a spa centre on the ground floor since 2020.",
+    steps: [
+      {title: "Step A: Tense", opts: ["a) simple present", "b) simple past", "c) present perfect"], ans: 2, hint: "Look at 'since 2020'."},
+      {title: "Step B: Number", opts: ["a) singular", "b) plural"], ans: 0, hint: "Look at 'a spa centre'."}
+    ],
+    finalOpts: ["a) There is", "b) There was", "c) There has been", "d) There have been"],
+    finalAns: 2,
+    explanation: "<b>'since 2020'</b> -> Present Perfect. <b>'a spa centre'</b> -> Singular. Therefore, <b>'There has been'</b>."
+  },
+  {
+    q: 2,
+    sentence: "Last year, <span class='blank' id='b2_2'></span> only two meeting rooms in this hotel.",
+    steps: [
+      {title: "Step A: Tense", opts: ["a) simple present", "b) simple past", "c) present perfect"], ans: 1, hint: "Look at 'Last year'."},
+      {title: "Step B: Number", opts: ["a) singular", "b) plural"], ans: 1, hint: "Look at 'two meeting rooms'."}
+    ],
+    finalOpts: ["a) there are", "b) there was", "c) there were", "d) there have been"],
+    finalAns: 2,
+    explanation: "<b>'Last year'</b> -> Simple Past. <b>'two meeting rooms'</b> -> Plural. Therefore, <b>'there were'</b>."
+  },
+  {
+    q: 3,
+    sentence: "Please note that <span class='blank' id='b2_3'></span> a 24-hour front desk service at our hotel ground floor.",
+    steps: [
+      {title: "Step A: Tense", opts: ["a) simple present", "b) simple past", "c) present perfect"], ans: 0, hint: "A general fact -> Simple Present."},
+      {title: "Step B: Number", opts: ["a) singular", "b) plural"], ans: 0, hint: "Look at 'a 24-hour front desk service'."}
+    ],
+    finalOpts: ["a) There is", "b) There are", "c) There was", "d) There has been"],
+    finalAns: 0,
+    explanation: "General fact -> Simple Present. <b>'a 24-hour ... service'</b> -> Singular. Therefore, <b>'There is'</b>."
+  },
+  {
+    q: 4,
+    sentence: "<span class='blank' id='b2_4'></span> many positive reviews about our restaurant since last month.",
+    steps: [
+      {title: "Step A: Tense", opts: ["a) simple present", "b) simple past", "c) present perfect"], ans: 2, hint: "Look at 'since last month'."},
+      {title: "Step B: Number", opts: ["a) singular", "b) plural"], ans: 1, hint: "Look at 'many positive reviews'."}
+    ],
+    finalOpts: ["a) There are", "b) There were", "c) There has been", "d) There have been"],
+    finalAns: 3,
+    explanation: "<b>'since last month'</b> -> Present Perfect. <b>'many positive reviews'</b> -> Plural. Therefore, <b>'There have been'</b>."
+  },
+  {
+    q: 5,
+    sentence: "Yesterday, <span class='blank' id='b2_5'></span> a special event in the ballroom.",
+    steps: [
+      {title: "Step A: Tense", opts: ["a) simple present", "b) simple past", "c) present perfect"], ans: 1, hint: "Look at 'Yesterday'."},
+      {title: "Step B: Number", opts: ["a) singular", "b) plural"], ans: 0, hint: "Look at 'a special event'."}
+    ],
+    finalOpts: ["a) there is", "b) there was", "c) there were", "d) there has been"],
+    finalAns: 1,
+    explanation: "<b>'Yesterday'</b> -> Simple Past. <b>'a special event'</b> -> Singular. Therefore, <b>'there was'</b>."
+  },
+  {
+    q: 6,
+    sentence: "<span class='blank' id='b2_6'></span> no parking spaces available at the moment.",
+    steps: [
+      {title: "Step A: Tense", opts: ["a) simple present", "b) simple past", "c) present perfect"], ans: 0, hint: "Look at 'at the moment'."},
+      {title: "Step B: Number", opts: ["a) singular", "b) plural"], ans: 1, hint: "Look at 'no parking spaces'."}
+    ],
+    finalOpts: ["a) There is", "b) There are", "c) There was", "d) There have been"],
+    finalAns: 1,
+    explanation: "<b>'at the moment'</b> -> Simple Present. <b>'spaces'</b> -> Plural. Therefore, <b>'There are'</b>."
+  }
+];
+
+let currentStepIdx = 0;
+let totalSteps = sec1Data.length + sec2Data.length + 1; // +1 for landing page
+
+// Build HTML for Section 1
+const s1Container = document.getElementById('section1-container');
+sec1Data.forEach((item, index) => {
+  const stepId = index + 1;
+  const nextStepId = stepId + 1;
+  
+  let optionsHtml = '';
+  item.options.forEach((opt, oIdx) => {
+    optionsHtml += `<div class="mc-option" onclick="selectAnswer(this, ${stepId}, ${oIdx}, ${item.ansIdx}, 's1', '${opt.replace(/^[a-c]\) /,'')}')">${opt}</div>`;
+  });
+
+  const html = `
+  <div class="step" id="step-${stepId}">
+    <div class="section">
+      <div class="question-title">Section 1: Subject-Verb Agreement - Q${item.q}</div>
+      <div class="sentence-box">${item.sentence}</div>
+      <div class="mc-options" id="opts-${stepId}">${optionsHtml}</div>
+      
+      <div class="feedback-box" id="fb-${stepId}"></div>
+      
+      <div class="nav-controls">
+        <button class="action-btn btn-secondary" onclick="gotoStep(${stepId-1})">&larr; Back</button>
+        <button class="action-btn" id="nextBtn-${stepId}" onclick="gotoStep(${nextStepId})" style="display:none;">Next &rarr;</button>
+      </div>
+    </div>
+  </div>`;
+  s1Container.innerHTML += html;
+});
+
+// Build HTML for Section 2
+const s2Container = document.getElementById('section2-container');
+const offset = sec1Data.length;
+sec2Data.forEach((item, index) => {
+  const stepId = offset + index + 1;
+  const nextStepId = stepId === (offset + sec2Data.length) ? 'final' : stepId + 1;
+  
+  let stepsHtml = '';
+  item.steps.forEach((stepObj, sIdx) => {
+    let optsHtml = '';
+    stepObj.opts.forEach((opt, oIdx) => {
+      optsHtml += `<div class="mc-option" style="padding: 8px 15px; font-size:1em;" onclick="selectSubAnswer(this, ${stepId}, ${sIdx}, ${oIdx}, ${stepObj.ans})">${opt}</div>`;
+    });
+    stepsHtml += `
+      <div class="step-box">
+        <div class="step-title">${stepObj.title}</div>
+        <div class="mc-options" style="margin-bottom:0;" id="subOpts-${stepId}-${sIdx}">${optsHtml}</div>
+      </div>
+    `;
+  });
+
+  let finalOptionsHtml = '';
+  item.finalOpts.forEach((opt, oIdx) => {
+    finalOptionsHtml += `<div class="mc-option" onclick="selectAnswer(this, ${stepId}, ${oIdx}, ${item.finalAns}, 's2', '${opt.replace(/^[a-d]\) /,'')}')">${opt}</div>`;
+  });
+
+  const html = `
+  <div class="step" id="step-${stepId}">
+    <div class="section">
+      <div class="question-title">Section 2: Tense and Agreement - Q${item.q}</div>
+      <div class="sentence-box">${item.sentence}</div>
+      
+      <div class="step-grid">${stepsHtml}</div>
+      
+      <div class="step-title" style="margin-top:20px;">Step C: Complete the blank</div>
+      <div class="mc-options" id="opts-${stepId}">${finalOptionsHtml}</div>
+      
+      <div class="feedback-box" id="fb-${stepId}"></div>
+      
+      <div class="nav-controls">
+        <button class="action-btn btn-secondary" onclick="gotoStep(${stepId-1})">&larr; Back</button>
+        <button class="action-btn" id="nextBtn-${stepId}" onclick="gotoStep('${nextStepId}')" style="display:none;">Next &rarr;</button>
+      </div>
+    </div>
+  </div>`;
+  s2Container.innerHTML += html;
+});
+
+
 function gotoStep(idx){
-  document.querySelectorAll('.step').forEach((s,i)=>s.classList.toggle('active',i===idx));
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step-' + idx).classList.add('active');
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-// Q1: Every word is clickable
-const reviewTextVisible = `This top-quality air purifier is perfect for spacious areas because its motor is powerful. It can purify rooms up to 50m² in just 10 minutes, providing you with fresh air in no time. Also, our air purifier is completely safe, as it never uses UV-C light. And with its user-friendly design, you can easily set a timer for 2, 4, or 8 hours. What's more, our air purifier is affordable. It's cheaper than many other options on the market, making it a perfect choice for everyone.`;
-const adjectiveList = ["top-quality","perfect","spacious","powerful","fresh","safe","user-friendly","affordable","cheaper"];
-let q1Choices = {};
+function selectSubAnswer(element, stepId, subIdx, selectedIdx, correctIdx) {
+  const container = document.getElementById(`subOpts-${stepId}-${subIdx}`);
+  if(container.classList.contains('locked')) return;
+  
+  const options = container.querySelectorAll('.mc-option');
+  options.forEach(opt => opt.classList.remove('selected', 'wrong-reveal', 'correct-reveal'));
+  
+  if(selectedIdx === correctIdx) {
+    element.classList.add('correct-reveal');
+    container.classList.add('locked');
+  } else {
+    element.classList.add('wrong-reveal');
+  }
+}
 
-function makeReviewFullyInteractive() {
-  const words = reviewTextVisible.split(/(\s+|[,.!?;—–’'])/g).filter(w=>w!==undefined);
-  let html = '';
-  words.forEach((word,idx) => {
-    if(/\s+/.test(word)) {
-      html += word;
-    } else if(word) {
-      html += `<span class="adjective" data-word="${word}" data-idx="${idx}">${word}</span>`;
+function selectAnswer(element, stepId, selectedIdx, correctIdx, type, textFill) {
+  const container = document.getElementById(`opts-${stepId}`);
+  if(container.classList.contains('locked')) return; // Prevent multiple clicks
+  container.classList.add('locked');
+
+  const options = container.querySelectorAll('.mc-option');
+  const fb = document.getElementById(`fb-${stepId}`);
+  const nextBtn = document.getElementById(`nextBtn-${stepId}`);
+  
+  // Fill blank text
+  let bId = type === 's1' ? `b${stepId}` : `b2_${stepId - offset}`;
+  document.getElementById(bId).innerText = textFill;
+  
+  options.forEach((opt, idx) => {
+    if(idx === correctIdx) {
+      opt.classList.add('correct-reveal');
+    } else if (idx === selectedIdx) {
+      opt.classList.add('wrong-reveal');
     }
   });
-  document.getElementById('reviewText').innerHTML = html;
-  document.querySelectorAll('.adjective').forEach(el=>{
-    el.onclick=()=>{
-      let word = el.getAttribute('data-word');
-      el.classList.toggle(adjectiveList.includes(word) ? 'selected' : 'incorrect');
-      if(adjectiveList.includes(word)){
-        q1Choices[word] = el.classList.contains('selected');
-      } else {
-        setTimeout(()=>el.classList.remove('incorrect'),600);
-      }
-      updateAdjectiveResult();
-    };
-  });
-}
-function updateAdjectiveResult(){
-  let found = Object.values(q1Choices).filter(Boolean).length;
-  document.getElementById('adjectiveResult').innerHTML =
-    found ? `Adjectives selected: ${found}` : "";
-}
-function submitQ1() {
-  let correct = 0;
-  let wrong = 0;
-  adjectiveList.forEach(adj=>{
-    if(q1Choices[adj]) correct++;
-  });
-  // Check for any 'selected' that are not adjectives
-  let selectedWords = Object.keys(q1Choices).filter(k=>q1Choices[k]);
-  wrong = selectedWords.filter(w=>!adjectiveList.includes(w)).length;
-  if(correct === adjectiveList.length && wrong === 0){
-    document.getElementById('adjectiveResult').innerHTML = "🌟 All correct! Well done!";
-  } else {
-    document.getElementById('adjectiveResult').innerHTML = "Try again! Check for missed or extra words.";
-  }
-}
-makeReviewFullyInteractive();
 
-// Q2: Drag-and-Drop ONLY adjectives to correct paraphrases
-let dragItem = null;
-document.querySelectorAll('.drag-item').forEach(el => {
-  el.addEventListener('dragstart', e => { dragItem=el; });
-});
-const dragAnswers = {
-  "drop-verygood": ["top-quality","perfect"],
-  "drop-inexpensive": ["affordable","cheaper"],
-  "drop-large": ["spacious"],
-  "drop-new": ["fresh"],
-  "drop-easy": ["user-friendly"],
-  "drop-safe": ["safe"],
-  "drop-powerful": ["powerful"]
-};
-["drop-verygood","drop-inexpensive","drop-large","drop-new","drop-easy","drop-safe","drop-powerful"].forEach(zone=>{
-  document.getElementById(zone).addEventListener('dragover',e=>e.preventDefault());
-  document.getElementById(zone).addEventListener('drop',function(e){
-    if(dragItem && dragAnswers[zone].includes(dragItem.id)){
-      this.appendChild(dragItem);
-      dragItem=null;
-      checkQ2();
-    }
-  });
-});
-function checkQ2(){
-  let correct = 0;
-  let total = 0;
-  for(const [zone,ids] of Object.entries(dragAnswers)){
-    Array.from(document.getElementById(zone).children).forEach(child=>{
-      if(ids.includes(child.id)) correct++;
-      total++;
-    });
-  }
-  if(total===9 && correct===9){
-    document.getElementById('dragDropResult').innerHTML = "🌟 All correct! Well done!";
-  } else {
-    document.getElementById('dragDropResult').innerHTML = "Keep going! 🧐";
-  }
-}
+  const isCorrect = (selectedIdx === correctIdx);
+  
+  let explanation = "";
+  if(type === 's1') explanation = sec1Data[stepId-1].explanation;
+  if(type === 's2') explanation = sec2Data[stepId-1-offset].explanation;
 
-// Q3: Matching Questions (randomized correct answer position)
-let matchProgress = {};
-function matchingQ3(btn, id){
-  let parent = btn.parentNode.parentNode;
-  let choices = parent.querySelectorAll(".match-choice");
-  Array.from(choices).forEach(b=>b.classList.remove('selected','incorrect'));
-  if(id===1 || id===4){
-    btn.classList.add('selected');
-    if(id===1) matchProgress.q3a = true;
-    if(id===4) matchProgress.q3b = true;
-  } else{
-    btn.classList.add('incorrect');
-    if(id!==1) matchProgress.q3a = false;
-    if(id!==4) matchProgress.q3b = false;
-  }
-  showQ3Feedback();
-}
-function showQ3Feedback(){
-  if(matchProgress.q3a && matchProgress.q3b){
-    document.getElementById('matchResult').innerHTML = "✅ Correct! Both reasons matched!";
-  } else if(matchProgress.q3a || matchProgress.q3b){
-    document.getElementById('matchResult').innerHTML = "One answer is correct, try the other!";
+  fb.style.display = 'block';
+  if(isCorrect) {
+    fb.className = 'feedback-box correct';
+    fb.innerHTML = `<strong>✅ Correct!</strong><br>${explanation}`;
   } else {
-    document.getElementById('matchResult').innerHTML = "";
+    fb.className = 'feedback-box wrong';
+    fb.innerHTML = `<strong>❌ Not quite right.</strong><br>${explanation}`;
+    document.getElementById(bId).style.textDecoration = "line-through";
+    document.getElementById(bId).style.color = "#dc3545";
   }
-}
-
-// Q4 Drag Reason Words, allow removal and check both correct
-let reasonDrag = null;
-["because2","as2","never2","with2"].forEach(id=>{
-  let el = document.getElementById(id);
-  if(el) el.addEventListener('dragstart',e=>{reasonDrag=e.target;});
-});
-document.getElementById('dropReason').addEventListener('dragover',e=>e.preventDefault());
-document.getElementById('dropReason').addEventListener('drop',function(e){
-  if(reasonDrag){
-    this.appendChild(reasonDrag);
-  }
-});
-document.getElementById('dropReason').addEventListener('click', function(e){
-  if (e.target.classList.contains('drag-item')) {
-    document.getElementById('reasonChoices').appendChild(e.target);
-  }
-});
-function submitQ4() {
-  let chosen = Array.from(document.getElementById('dropReason').children)
-                .map(x=>x.textContent.trim());
-  const correctSet = new Set(['because','as']);
-  const chosenSet = new Set(chosen);
-  if (
-    chosen.length === correctSet.size &&
-    [...correctSet].every(word => chosenSet.has(word)) &&
-    [...chosenSet].every(word => correctSet.has(word))
-  ) {
-    document.getElementById('dragReasonResult').innerHTML = "🌟 All correct! Well done!";
-  } else {
-    document.getElementById('dragReasonResult').innerHTML = "Try again! You need to place BOTH correct words only.";
-  }
+  
+  nextBtn.style.display = 'inline-block';
 }
 </script>
 </body>
