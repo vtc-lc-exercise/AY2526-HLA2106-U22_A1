@@ -15,7 +15,6 @@
       min-height: 100vh;
       padding: 24px;
       margin: 0;
-      display: flex; /* 確保整體可以置中 */
     }
     @keyframes gradientBG {
       0% {background-position: 0% 50%;}
@@ -23,9 +22,8 @@
       100% {background-position: 0% 50%;}
     }
     .container {
-      width: 100%;
       max-width: 950px;
-      margin: auto; /* 置中 */
+      margin: 0 auto;
       background: rgba(255,255,255,0.97);
       border-radius: 24px;
       padding: 36px 28px 42px 28px;
@@ -41,17 +39,15 @@
     .step.active { display: block; animation: fadeIn 1s;}
     @keyframes fadeIn {from{opacity:0}to{opacity:1}}
     
-    /* Landing Page 置中 */
-    .title-page { text-align: center; padding: 30px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 55vh;}
+    .title-page { text-align: center; padding: 64px 16px 52px 16px;}
     .title-page h1 {
       font-size: 2.3em; font-weight: 700;
       background: linear-gradient(135deg, #667eea 0, #764ba2 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      text-shadow: 0 3px 18px #23a6d555; margin-bottom: 10px;}
+      text-shadow: 0 3px 18px #23a6d555; margin-bottom: 20px;}
     .emoji-row { font-size: 2.5em; margin-bottom: 20px; animation: floatEmojis 1.6s infinite alternate;}
     @keyframes floatEmojis {from{transform:translateY(0);}to{transform:translateY(-16px);}}
     
-    /* 完全用返你原本的 Button 顏色！ */
     .nav-btn, .action-btn {
       background: linear-gradient(90deg,#ff9a9e,#fad0c4);
       border:none; border-radius:13px;
@@ -65,51 +61,42 @@
       background: linear-gradient(90deg,#fbc2eb,#a6c1ee);
     }
 
-    .section { margin-top: 30px; margin-bottom: 48px; border-bottom: 2px dashed #e4e4e4; padding-bottom: 30px;}
+    .section { margin-top: 54px; margin-bottom: 48px; border-bottom: 1px dashed #ccc; padding-bottom: 30px;}
     .section:last-child { border-bottom: none; }
+    
     .question {font-size:1.3em;color:#532c65;font-weight:600;margin-bottom:16px;}
     
-    /* 完全用返你原本的淺橙色 Review-text Box */
     .review-text {
       background: #fff8f3;
       border-radius: 13px;
-      padding: 22px 18px 22px 18px;
-      margin-bottom: 18px;
+      padding: 26px 18px 22px 18px;
+      margin-bottom: 28px;
       margin-top: 6px;
       box-shadow: 0 2px 14px #e0bcd2;
-      font-size: 1.15em;
-      color: #333;
-      line-height: 1.6;
+      font-size: 1.10em;
     }
     
-    /* 完全用返你原本的 Match Choice 按鈕設計 */
-    .match-choices{margin:8px 0; display:flex; flex-direction:column; gap:8px;}
+    .match-choices{margin:8px 0;}
     .match-choice{
-      background:#ffe4e1;padding:10px 15px;border-radius:6px;margin:0;
-      border:none;cursor:pointer;color:#444;font-size:1.05em;display:block;text-align:left;
+      background:#ffe4e1;padding:7px 15px;border-radius:6px;margin-bottom:7px;
+      border:none;cursor:pointer;color:#444;font-size:1em;display:block;text-align:left;
       transition:background .19s; width: 100%;
     }
     .match-choice:hover { background: #ffcfca; }
-    .match-choice.selected{background:#b3edc1;color:#108301;font-weight:600;pointer-events:none;}
-    .match-choice.incorrect{background:#ffe6e6;color:#be220b;font-weight:600;pointer-events:none;}
-    .match-choices.locked .match-choice { pointer-events: none; }
+    .match-choice.selected{background:#b3edc1;color:#108301;font-weight:600;}
+    .match-choice.incorrect{background:#ffe6e6;color:#be220b;}
 
-    /* 完全用返你原本的 Grid 排版，用來做 Section 2 嘅 Step A & B */
     .drag-category-grid {
       display: grid;
       grid-template-columns: repeat(2,1fr);
-      gap: 1.2em;
+      gap: 1em;
       margin-bottom: 15px;
     }
-    .drag-label{font-size:1.05em;font-weight:600;margin-bottom:8px;margin-top:8px;color:#532c65;}
+    .drag-label{font-size:1em;font-weight:600;margin-bottom:8px;margin-top:8px;color:#532c65;}
 
-    /* 完全用返你原本的 Explain Box */
     .explain-box {
-      margin-top: 16px; font-size: 1.05em; color: #16496d; background: #fffbe7; border-radius: 8px;
+      margin-top: 16px; font-size: 1em; color: #16496d; background: #fffbe7; border-radius: 8px;
       box-shadow: 0 2px 8px #ffe0b2; padding: 14px 17px; font-weight:600; display: none;
-    }
-    .explain-box.wrong {
-      background: #fff0f0; color: #b91f37; box-shadow: 0 2px 8px #ffcaca;
     }
 
     .blank {
@@ -130,46 +117,44 @@
 <body>
 <div class="container">
   
-  <!-- Landing Page -->
+  <!-- Step 0: Landing Page -->
   <div class="step active" id="step-0">
     <div class="title-page">
       <div class="emoji-row">📚🏨✨</div>
       <h1>HLA2106: Workplace Writing II</h1>
       <h2 style="color:#764ba2;font-weight:600;">Unit 21: Using there-structure</h2>
-      <p style="font-size:1.13em; color:#444; max-width: 600px; margin-bottom: 20px;">
-        Master the subject-verb agreement and the tense usage with the there-structure in hospitality contexts.
-      </p>
-      <button class="action-btn" onclick="gotoStep(1)">Start Exercise &rarr;</button>
+      <p style="font-size:1.13em;">Master the subject-verb agreement and the tense usage with the there-structure in hospitality contexts. <span style="font-size:1.4em;">🤩</span></p>
+      <button class="nav-btn" onclick="gotoStep(1)">Start &rarr;</button>
     </div>
   </div>
 
   <!-- Step 1: Section 1 -->
   <div class="step" id="step-1">
-    <div style="font-size:1.5em;color:#532c65;font-weight:700;margin-bottom:10px;">Section 1: Subject-Verb Agreement</div>
-    <p style="font-size:1.1em; color:#554; margin-bottom:20px;">Choose the correct option to complete each sentence.</p>
+    <h2 style="color:#532c65;">Section 1: Subject-Verb Agreement</h2>
+    <p style="color:#554; font-size:1.1em;">Choose the correct option to complete each sentence.</p>
     <div id="sec1-content"></div>
-    <div style="text-align:right; margin-top:20px;">
+    <div style="text-align:right; margin-top: 20px;">
       <button class="action-btn" onclick="gotoStep(2)">Next: Section 2 &rarr;</button>
     </div>
   </div>
   
   <!-- Step 2: Section 2 -->
   <div class="step" id="step-2">
-    <div style="font-size:1.5em;color:#532c65;font-weight:700;margin-bottom:10px;">Section 2: Tense and Agreement</div>
-    <p style="font-size:1.1em; color:#554; margin-bottom:20px;">Follow the steps to find the correct structure.</p>
+    <h2 style="color:#532c65;">Section 2: Tense and Agreement</h2>
+    <p style="color:#554; font-size:1.1em;">Follow the steps to find the correct structure.</p>
     <div id="sec2-content"></div>
-    <div style="text-align:right; margin-top:20px;">
+    <div style="text-align:right; margin-top: 20px;">
       <button class="action-btn" onclick="gotoStep(3)">Finish &rarr;</button>
     </div>
   </div>
   
-  <!-- Step 3: Finish -->
+  <!-- Step 3: End Page -->
   <div class="step" id="step-3">
     <div class="title-page">
       <div class="emoji-row">🎉🏆👏</div>
       <h1>Great Job!</h1>
       <p style="font-size:1.2em; color: #444;">You have completed Unit 21.</p>
-      <button class="action-btn" onclick="location.reload()">Practice Again</button>
+      <button class="nav-btn" onclick="location.reload()">Practice Again</button>
     </div>
   </div>
 
@@ -196,7 +181,6 @@ const sec2Data = [
   { q: 6, sentence: "<span class='blank' id='b2_5'></span> no parking spaces available at the moment.", steps: [ {title: "Step A: Tense", opts: ["a) simple present", "b) simple past", "c) present perfect"], ans: 0}, {title: "Step B: Number", opts: ["a) singular", "b) plural"], ans: 1} ], finalOpts: ["a) There is", "b) There are", "c) There was", "d) There have been"], finalAns: 1, exp: "<b>'at the moment'</b> -> Simple Present. <b>'spaces'</b> -> Plural. Therefore, <b>'There are'</b>." }
 ];
 
-// Generate Section 1
 const s1Container = document.getElementById('sec1-content');
 sec1Data.forEach((item, i) => {
   let optsHTML = item.options.map((opt, oIdx) => 
@@ -212,15 +196,14 @@ sec1Data.forEach((item, i) => {
     </div>`;
 });
 
-// Generate Section 2
 const s2Container = document.getElementById('sec2-content');
 sec2Data.forEach((item, i) => {
   let stepA_HTML = item.steps[0].opts.map((opt, oIdx) => 
-    `<button class="match-choice" style="padding:7px 10px; font-size:0.95em;" onclick="checkS2Sub(this, ${oIdx}, ${item.steps[0].ans})">${opt}</button>`
+    `<button class="match-choice" onclick="checkS2Sub(this, ${oIdx}, ${item.steps[0].ans})">${opt}</button>`
   ).join('');
   
   let stepB_HTML = item.steps[1].opts.map((opt, oIdx) => 
-    `<button class="match-choice" style="padding:7px 10px; font-size:0.95em;" onclick="checkS2Sub(this, ${oIdx}, ${item.steps[1].ans})">${opt}</button>`
+    `<button class="match-choice" onclick="checkS2Sub(this, ${oIdx}, ${item.steps[1].ans})">${opt}</button>`
   ).join('');
 
   let stepC_HTML = item.finalOpts.map((opt, oIdx) => 
@@ -232,7 +215,6 @@ sec2Data.forEach((item, i) => {
       <div class="question">Question ${item.q}</div>
       <div class="review-text">${item.sentence}</div>
       
-      <!-- 原汁原味的 Drag Category Grid 用作 Step A 和 B -->
       <div class="drag-category-grid">
         <div>
           <div class="drag-label">${item.steps[0].title}</div>
@@ -263,22 +245,23 @@ function checkS1(qIdx, selectedIdx, btn, text) {
   
   let correctIdx = sec1Data[qIdx].ans;
   Array.from(parent.children).forEach((b, i) => {
+    b.onclick = null; // disable clicks after answered
     if(i === correctIdx) b.classList.add('selected');
     else if (i === selectedIdx) b.classList.add('incorrect');
   });
   
-  let blank = document.getElementById(`b1_${qIdx}`);
-  blank.innerText = text;
+  document.getElementById(`b1_${qIdx}`).innerText = text;
   
   let expBox = document.getElementById(`s1-exp-${qIdx}`);
   expBox.style.display = 'block';
   if(selectedIdx === correctIdx) {
-    expBox.innerHTML = `✅ Correct! <br><span style="font-weight:normal; margin-top:5px; display:block;">${sec1Data[qIdx].exp}</span>`;
+    expBox.innerHTML = `✅ Correct!<br><br>${sec1Data[qIdx].exp}`;
+    expBox.style.background = "#fffbe7";
+    expBox.style.color = "#16496d";
   } else {
-    expBox.className = 'explain-box wrong';
-    expBox.innerHTML = `❌ Try again! <br><span style="font-weight:normal; margin-top:5px; display:block;">${sec1Data[qIdx].exp}</span>`;
-    blank.style.textDecoration = "line-through";
-    blank.style.color = "#b91f37";
+    expBox.innerHTML = `❌ Incorrect.<br><br>${sec1Data[qIdx].exp}`;
+    expBox.style.background = "#ffd6d6";
+    expBox.style.color = "#b91f37";
   }
 }
 
@@ -288,6 +271,7 @@ function checkS2Sub(btn, selectedIdx, correctIdx) {
   parent.classList.add('locked');
   
   Array.from(parent.children).forEach((b, i) => {
+    b.onclick = null;
     if(i === correctIdx) b.classList.add('selected');
     else if (i === selectedIdx) b.classList.add('incorrect');
   });
@@ -300,22 +284,23 @@ function checkS2Final(qIdx, selectedIdx, btn, text) {
   
   let correctIdx = sec2Data[qIdx].finalAns;
   Array.from(parent.children).forEach((b, i) => {
+    b.onclick = null;
     if(i === correctIdx) b.classList.add('selected');
     else if (i === selectedIdx) b.classList.add('incorrect');
   });
   
-  let blank = document.getElementById(`b2_${qIdx}`);
-  blank.innerText = text;
+  document.getElementById(`b2_${qIdx}`).innerText = text;
   
   let expBox = document.getElementById(`s2-exp-${qIdx}`);
   expBox.style.display = 'block';
   if(selectedIdx === correctIdx) {
-    expBox.innerHTML = `✅ Correct! <br><span style="font-weight:normal; margin-top:5px; display:block;">${sec2Data[qIdx].exp}</span>`;
+    expBox.innerHTML = `✅ Correct!<br><br>${sec2Data[qIdx].exp}`;
+    expBox.style.background = "#fffbe7";
+    expBox.style.color = "#16496d";
   } else {
-    expBox.className = 'explain-box wrong';
-    expBox.innerHTML = `❌ Try again! <br><span style="font-weight:normal; margin-top:5px; display:block;">${sec2Data[qIdx].exp}</span>`;
-    blank.style.textDecoration = "line-through";
-    blank.style.color = "#b91f37";
+    expBox.innerHTML = `❌ Incorrect.<br><br>${sec2Data[qIdx].exp}`;
+    expBox.style.background = "#ffd6d6";
+    expBox.style.color = "#b91f37";
   }
 }
 </script>
